@@ -8,13 +8,6 @@ export class Answers {
   public content: Map<Content, number>;
   public frecuency: Map<Frecuency, number>;
 
-  private _W: number | undefined;
-  private _D: number | undefined;
-  private _Dd: number | undefined;
-  private _F: number | undefined;
-  private _FAmplio: number | undefined;
-  private _FposAmplio: number | undefined;
-
   constructor(
     numAnswers: number,
     localization: Map<Localization, number>,
@@ -43,88 +36,63 @@ export class Answers {
   }
 
   get W(): number {
-    // If was already calculated. To avoid recalculations on each call.
-    if(this._W) {
-      return this._W;
-    }
-
     const variables = [Localization.W, Localization.WS, Localization.SW, Localization["W\\"], Localization["W\\S"], Localization["SW\\"]];
     
     const answers = Array.from(this.localization.entries()).filter(variable => variables.includes(variable[0]));
 
-    this._W = answers.reduce((prev, current) => prev + current[1], 0);
+    let total = answers.reduce((prev, current) => prev + current[1], 0);
 
-    this._W = (this._W / this.numAnswers) * 100;
+    total = (total / this.numAnswers) * 100;
 
-    return this._W;
+    return total;
   }
 
   get D(): number {
-    // If was already calculated. To avoid recalculations on each call.
-    if(this._D) {
-      return this._D;
-    }
-
     const variables = [Localization.D, Localization.DS, Localization.SD];
     
     const answers = Array.from(this.localization.entries()).filter(variable => variables.includes(variable[0]));
 
-    this._D = answers.reduce((prev, current) => prev + current[1], 0);
+    let total = answers.reduce((prev, current) => prev + current[1], 0);
 
-    this._D = (this._D / this.numAnswers) * 100;
+    total = (total / this.numAnswers) * 100;
 
-    return this._D;
+    return total;
   }
 
   get Dd(): number {
-    // If was already calculated. To avoid recalculations on each call.
-    if(this._Dd) {
-      return this._Dd;
-    }
-
     const variables = [Localization.Dd, Localization.De, Localization.Dr, Localization.Do, Localization['->DdS'], Localization.DdS, Localization.SDd, Localization.S, Localization.s];
     
     const answers = Array.from(this.localization.entries()).filter(variable => variables.includes(variable[0]));
 
-    this._Dd = answers.reduce((prev, current) => prev + current[1], 0);
+    let total = answers.reduce((prev, current) => prev + current[1], 0);
 
-    this._Dd = (this._Dd / this.numAnswers) * 100;
+    total = (total / this.numAnswers) * 100;
 
-    return this._Dd;
+    return total;
   }
 
   get F(): number {
-    // If was already calculated. To avoid recalculations on each call.
-    if(this._F) {
-      return this._F;
-    }
-
     const variables = [Determinant['F+'], Determinant.F, Determinant['F-']];
     
     const answers = Array.from(this.determinant.entries()).filter(variable => variables.includes(variable[0]));
 
-    this._F = answers.reduce((prev, current) => prev + current[1], 0);
+    let total = answers.reduce((prev, current) => prev + current[1], 0);
 
-    this._F = (this._F / this.numAnswers) * 100;
+    total = (total / this.numAnswers) * 100;
 
-    return this._F;
+    return total;
   }
 
   get FAmplio(): number {
-    // If was already calculated. To avoid recalculations on each call.
-    if(this._FAmplio) {
-      return this._FAmplio;
-    }
-
     const variables = [Determinant['F+'], Determinant.F, Determinant['F-'], Determinant['M+'], Determinant['M-'], Determinant['FM+'], Determinant['FM-'], Determinant['Ms+'], Determinant['Ms-'], Determinant['FC+'], Determinant['FC-'], Determinant['F/C+'], Determinant['F/C-'], Determinant['FCarb+'], Determinant['FCarb-'], Determinant['FC_+'], Determinant['FC_-'], Determinant['FCdet+'], Determinant['FCdet-'], Determinant['FCsim+'], Determinant['FCsim-'], Determinant['FCh+'], Determinant['FCh-'], Determinant['FC\'+'], Determinant['FC\'-'], Determinant['F(C)+'], Determinant['F(C)-']];
     
     const answers = Array.from(this.determinant.entries()).filter(variable => variables.includes(variable[0]));
 
-    this._FAmplio = answers.reduce((prev, current) => prev + current[1], 0);
+    let total = answers.reduce((prev, current) => prev + current[1], 0);
 
-    this._FAmplio = (this._FAmplio / this.numAnswers) * 100;
+    total = (total / this.numAnswers) * 100;
 
-    return this._FAmplio;
+    return total;
   }
 
   get FposSimple(): number {
@@ -138,11 +106,6 @@ export class Answers {
   }
 
   get FposAmplio(): number {
-    // If was already calculated. To avoid recalculations on each call.
-    if(this._FposAmplio) {
-      return this._FposAmplio;
-    }
-
     const variablesFxpos = [Determinant['F+'], Determinant['M+'], Determinant['FM+'], Determinant['Ms+'], Determinant['FC+'], Determinant['F/C+'], Determinant['FCarb+'], Determinant['FC_+'], Determinant['FCdet+'], Determinant['FCsim+'], Determinant['FCh+'],  Determinant['FC\'+'], Determinant['F(C)+']];
 
     const variablesFx = [Determinant['F+'], Determinant.F, Determinant['F-'], Determinant['M+'], Determinant['M-'], Determinant['FM+'], Determinant['FM-'], Determinant['Ms+'], Determinant['Ms-'], Determinant['FC+'], Determinant['FC-'], Determinant['F/C+'], Determinant['F/C-'], Determinant['FCarb+'], Determinant['FCarb-'], Determinant['FC_+'], Determinant['FC_-'], Determinant['FCdet+'], Determinant['FCdet-'], Determinant['FCsim+'], Determinant['FCsim-'], Determinant['FCh+'], Determinant['FCh-'], Determinant['FC\'+'], Determinant['FC\'-'], Determinant['F(C)+'], Determinant['F(C)-']];
@@ -155,9 +118,7 @@ export class Answers {
 
     const totalFx = answersFx.reduce((prev, current) => prev + current[1], 0);
 
-    this._FposAmplio = (totalFxpos / totalFx) * 100;
-
-    return this._FposAmplio;
+    return (totalFxpos / totalFx) * 100;
   }
 
   get H(): number {

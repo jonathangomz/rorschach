@@ -3,6 +3,7 @@ import './App.css'
 import { Card } from './components/Card'
 import { Content, Determinant, Frecuency, Localization } from './services/rorschach.types'
 import { Answers } from './services/Answers';
+import { Results } from './components/Results';
 
 function App() {
   const [addingNewLocalization, setAddingNewLocalization] = useState(false);
@@ -14,6 +15,8 @@ function App() {
   const [determinant, setDeterminant] = useState(new Map<Determinant, number>());
   const [content, setContent] = useState(new Map<Content, number>());
   const [frecuency, setFrecuency] = useState(new Map<Frecuency, number>());
+
+  const [answers, setAnswers] = useState<Answers | undefined>(undefined);
 
   function addNewLocalization(newVar: string) {
     const newMap = new Map(localization);
@@ -72,22 +75,56 @@ function App() {
   }
 
   useEffect(() => {
-    const _testing = new Map(localization);
-    _testing.set(Localization.W, 3);
-    _testing.set(Localization.D, 2);
-    setLocalization(_testing);
+    const _testingL = new Map(localization);
+    _testingL.set(Localization.W, 4);
+    _testingL.set(Localization.D, 16);
+    _testingL.set(Localization.Dr, 3);
+    setLocalization(_testingL);
+
+    const _testingD = new Map(determinant);
+    _testingD.set(Determinant['F+'], 2);
+    _testingD.set(Determinant.F, 12);
+    _testingD.set(Determinant['F-'], 2);
+    _testingD.set(Determinant['FM+'], 1);
+    _testingD.set(Determinant['FC+'], 1);
+    _testingD.set(Determinant.CF, 3);
+    _testingD.set(Determinant['FCh+'], 2);
+    setDeterminant(_testingD);
+
+    const _testingC = new Map(content);
+    _testingC.set(Content.Hd, 3);
+    _testingC.set(Content.A, 7);
+    _testingC.set(Content.Ad, 4);
+    _testingC.set(Content.obj, 5);
+    _testingC.set(Content.ana, 1);
+    _testingC.set(Content.veg, 2);
+    _testingC.set(Content.nat, 1);
+    setContent(_testingC);
+
+    const _testingF = new Map(frecuency);
+    _testingF.set(Frecuency.P, 3);
+    _testingF.set(Frecuency['(P)'], 1);
+    _testingF.set(Frecuency['O+'], 1);
+    _testingF.set(Frecuency['O-'], 1);
+    _testingF.set(Frecuency.O, 17);
+    setFrecuency(_testingF);
   }, []);
 
   function calculate() {
    const answers = new Answers(23, localization, determinant, content, frecuency);
-   console.log(answers.W);
+   
+  //  if(answers.validate()) {
+    
+  //  }
+
+   setAnswers(answers);
   }
 
   return (
     <>
       <h1>Welcome</h1>
 
-      <div className='grid gap-6 m-12 grid-cols-1 md:grid-cols-2'>
+      <div className='grid gap-6 m-12 grid-cols-1 md:grid-cols-2 justify-items-center'>
         <Card title="Localization">
           <>
             <button onClick={() => setAddingNewLocalization(!addingNewLocalization)} id='add_localization' type="button" className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Agregar nueva variable</button>
@@ -302,6 +339,8 @@ function App() {
       </div>
       
       <button onClick={calculate} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Calculate</button>
+
+      {answers ? <Results answers={answers} /> : ''}
 
     </>
   )
