@@ -85,41 +85,41 @@ function App() {
     setFrecuency(newMap);    
   }
 
-  useEffect(() => {
-    const _testingL = new Map(localization);
-    _testingL.set(Localization.W, 4);
-    _testingL.set(Localization.D, 16);
-    _testingL.set(Localization.Dr, 3);
-    setLocalization(_testingL);
+  // useEffect(() => {
+  //   const _testingL = new Map(localization);
+  //   _testingL.set(Localization.W, 4);
+  //   _testingL.set(Localization.D, 16);
+  //   _testingL.set(Localization.Dr, 3);
+  //   setLocalization(_testingL);
 
-    const _testingD = new Map(determinant);
-    _testingD.set(Determinant['F+'], 2);
-    _testingD.set(Determinant.F, 12);
-    _testingD.set(Determinant['F-'], 2);
-    _testingD.set(Determinant['FM+'], 1);
-    _testingD.set(Determinant['FC+'], 1);
-    _testingD.set(Determinant.CF, 3);
-    _testingD.set(Determinant['FCh+'], 2);
-    setDeterminant(_testingD);
+  //   const _testingD = new Map(determinant);
+  //   _testingD.set(Determinant['F+'], 2);
+  //   _testingD.set(Determinant.F, 12);
+  //   _testingD.set(Determinant['F-'], 2);
+  //   _testingD.set(Determinant['FM+'], 1);
+  //   _testingD.set(Determinant['FC+'], 1);
+  //   _testingD.set(Determinant.CF, 3);
+  //   _testingD.set(Determinant['FCh+'], 2);
+  //   setDeterminant(_testingD);
 
-    const _testingC = new Map(content);
-    _testingC.set(Content.Hd, 3);
-    _testingC.set(Content.A, 7);
-    _testingC.set(Content.Ad, 4);
-    _testingC.set(Content.obj, 5);
-    _testingC.set(Content.ana, 1);
-    _testingC.set(Content.veg, 2);
-    _testingC.set(Content.nat, 1);
-    setContent(_testingC);
+  //   const _testingC = new Map(content);
+  //   _testingC.set(Content.Hd, 3);
+  //   _testingC.set(Content.A, 7);
+  //   _testingC.set(Content.Ad, 4);
+  //   _testingC.set(Content.obj, 5);
+  //   _testingC.set(Content.ana, 1);
+  //   _testingC.set(Content.veg, 2);
+  //   _testingC.set(Content.nat, 1);
+  //   setContent(_testingC);
 
-    const _testingF = new Map(frecuency);
-    _testingF.set(Frecuency.P, 3);
-    _testingF.set(Frecuency['(P)'], 1);
-    _testingF.set(Frecuency['O+'], 1);
-    _testingF.set(Frecuency['O-'], 1);
-    _testingF.set(Frecuency.O, 17);
-    setFrecuency(_testingF);
-  }, []);
+  //   const _testingF = new Map(frecuency);
+  //   _testingF.set(Frecuency.P, 3);
+  //   _testingF.set(Frecuency['(P)'], 1);
+  //   _testingF.set(Frecuency['O+'], 1);
+  //   _testingF.set(Frecuency['O-'], 1);
+  //   _testingF.set(Frecuency.O, 17);
+  //   setFrecuency(_testingF);
+  // }, []);
 
   function calculate() {
     if(numAnswers === undefined) {
