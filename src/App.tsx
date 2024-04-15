@@ -11,12 +11,23 @@ function App() {
   const [addingNewContent, setAddingNewContent] = useState(false);
   const [addingNewFrecuency, setAddingNewFrecuency] = useState(false);
 
+  const [numAnswers, setNumAnswers] = useState<number | undefined>(undefined);
+
   const [localization, setLocalization] = useState(new Map<Localization, number>());
   const [determinant, setDeterminant] = useState(new Map<Determinant, number>());
   const [content, setContent] = useState(new Map<Content, number>());
   const [frecuency, setFrecuency] = useState(new Map<Frecuency, number>());
 
   const [answers, setAnswers] = useState<Answers | undefined>(undefined);
+
+  function updateNumAnswers(value: string) {
+    const _numAnswers = Number.parseInt(value);
+    if(isNaN(_numAnswers)) {
+      setNumAnswers(undefined);
+    } else {
+      setNumAnswers(_numAnswers);
+    }
+  }
 
   function addNewLocalization(newVar: string) {
     const newMap = new Map(localization);
@@ -111,18 +122,28 @@ function App() {
   }, []);
 
   function calculate() {
-   const answers = new Answers(23, localization, determinant, content, frecuency);
-   
-  //  if(answers.validate()) {
-    
-  //  }
-
-   setAnswers(answers);
+    if(numAnswers === undefined) {
+      alert('Numero de respuestas no tiene valor.');
+    } else {
+      const answers = new Answers(numAnswers!, localization, determinant, content, frecuency);
+      if(answers.validateNumSections()) {
+        if(answers.validateNumAnswers()) {
+          setAnswers(answers);
+        } else {
+          alert('Numero de respuestas no coincide con las sumas de las secciones.');
+        }
+      } else {
+        alert('Algunos valores de las secciones están mal. Checa las sumas.');
+      }
+    }
   }
 
   return (
     <>
-      <h1>Welcome</h1>
+      <div className="mb-6">
+        <label htmlFor="large-input" className="block mb-2 text-sm font-medium text-gray-900 text-grey">Número de respuestas</label>
+        <input onChange={(e) => updateNumAnswers(e.target.value)} value={numAnswers} type="text" id="large-input" className="block m-auto p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 min-w-24" placeholder='23'/>
+      </div>
 
       <div className='grid gap-6 m-12 grid-cols-1 md:grid-cols-2 justify-items-center'>
         <Card title="Localization">
@@ -175,6 +196,8 @@ function App() {
                 </div>))
               }
             </div>
+
+            <p>Suma: {Array.from(localization.values()).reduce((prev, current) => prev + current, 0)}</p>
           </>
         </Card>
 
@@ -228,6 +251,7 @@ function App() {
                 </div>))
               }
             </div>
+            <p>Suma: {Array.from(determinant.values()).reduce((prev, current) => prev + current, 0)}</p>
           </>
         </Card>
 
@@ -281,6 +305,7 @@ function App() {
                 </div>))
               }
             </div>
+            <p>Suma: {Array.from(content.values()).reduce((prev, current) => prev + current, 0)}</p>
           </>
         </Card>
 
@@ -334,6 +359,7 @@ function App() {
                 </div>))
               }
             </div>
+            <p>Suma: {Array.from(frecuency.values()).reduce((prev, current) => prev + current, 0)}</p>
           </>
         </Card>
       </div>
