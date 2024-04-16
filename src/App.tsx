@@ -178,7 +178,7 @@ function App() {
 
             {addingNewLocalization ? <div id='add_localization_div'>
               <label htmlFor='new_localization' className="block mb-2 text-sm font-medium text-gray-900 text-white">Variable</label>
-              <select id='new_localization' onChange={(e) => addNewLocalization(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+              <select id='new_localization' onChange={(e) => addNewLocalization(e.target.value)} defaultValue={undefined} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 <option disabled selected>Selecciona una Localización</option>
                 {Object.values(Localization).filter((v): v is number => typeof v === 'number').map((variable) => {
                   if(!localization.has(variable)) {
@@ -197,7 +197,7 @@ function App() {
                 <div key={entry[0]} className='grid gap-6 grid-cols-2'>
                   <div>
                     <label htmlFor={Localization[entry[0]]} className="block mb-2 text-sm font-medium text-gray-900 text-white">Variable</label>
-                    <select id={Localization[entry[0]]} value={entry[0]} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <select disabled id={Localization[entry[0]]} value={entry[0]} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                       {Object.values(Localization).filter((v): v is number => typeof v === 'number').map((variable) =>
                         <option key={variable} value={variable}>{Localization[variable]}</option>)
                       }
@@ -252,7 +252,7 @@ function App() {
                 <div key={entry[0]} className='grid gap-6 grid-cols-2'>
                   <div>
                     <label htmlFor={Determinant[entry[0]]} className="block mb-2 text-sm font-medium text-gray-900 text-white">Variable</label>
-                    <select id={Determinant[entry[0]]} value={entry[0]} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <select disabled id={Determinant[entry[0]]} value={entry[0]} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                       {Object.values(Determinant).filter((v): v is number => typeof v === 'number').map((variable) =>
                         <option key={variable} value={variable}>{Determinant[variable]}</option>)
                       }
@@ -306,7 +306,7 @@ function App() {
                 <div key={entry[0]} className='grid gap-6 grid-cols-2'>
                   <div>
                     <label htmlFor={Content[entry[0]]} className="block mb-2 text-sm font-medium text-gray-900 text-white">Variable</label>
-                    <select id={Content[entry[0]]} value={entry[0]} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <select disabled id={Content[entry[0]]} value={entry[0]} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                       {Object.values(Content).filter((v): v is number => typeof v === 'number').map((variable) =>
                         <option key={variable} value={variable}>{Content[variable]}</option>)
                       }
@@ -360,7 +360,7 @@ function App() {
                 <div key={entry[0]} className='grid gap-6 grid-cols-2'>
                   <div>
                     <label htmlFor={Frecuency[entry[0]]} className="block mb-2 text-sm font-medium text-gray-900 text-white">Variable</label>
-                    <select id={Frecuency[entry[0]]} value={entry[0]} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                    <select disabled id={Frecuency[entry[0]]} value={entry[0]} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                       {Object.values(Frecuency).filter((v): v is number => typeof v === 'number').map((variable) =>
                         <option key={variable} value={variable}>{Frecuency[variable]}</option>)
                       }
