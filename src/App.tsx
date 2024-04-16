@@ -60,6 +60,30 @@ function App() {
     setAddingNewFrecuency(false);
   }
 
+  function removeLocalization(varId: Localization) {
+    const newMap = new Map(localization);
+    newMap.delete(varId);
+    setLocalization(newMap);
+  }
+
+  function removeDeterminant(varId: Determinant) {
+    const newMap = new Map(determinant);
+    newMap.delete(varId);
+    setDeterminant(newMap);
+  }
+
+  function removeContent(varId: Content) {
+    const newMap = new Map(content);
+    newMap.delete(varId);
+    setContent(newMap);
+  }
+
+  function removeFrecuency(varId: Frecuency) {
+    const newMap = new Map(frecuency);
+    newMap.delete(varId);
+    setFrecuency(newMap);
+  }
+
   function updateLocalizationValue(variable: Localization, newValue: string) {
     const value = Number.parseInt(newValue);
 
@@ -171,7 +195,7 @@ function App() {
         <input onChange={(e) => updateNumAnswers(e.target.value)} value={numAnswers} type="text" id="large-input" className="block m-auto p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 min-w-24" placeholder='23'/>
       </div>
 
-      <div className='grid gap-6 m-12 grid-cols-1 md:grid-cols-2 justify-items-center'>
+      <div className='grid gap-6 grid-cols-1 md:grid-cols-2 justify-items-center'>
         <Card title="Localization">
           <>
             <button onClick={() => setAddingNewLocalization(!addingNewLocalization)} id='add_localization' type="button" className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Agregar nueva variable</button>
@@ -192,10 +216,14 @@ function App() {
               </select>
             </div> : ''}
 
-            <div className="flex flex-col w-full max-w-64 m-auto">
+            <div className="flex flex-col w-full m-auto">
               {Array.from(localization.entries()).map((entry) => (
-                <div key={entry[0]} className='grid gap-6 grid-cols-2'>
-                  <div>
+                <div key={entry[0]} className='flex gap-6 items-end'>
+                  <button onClick={() => removeLocalization(entry[0])} type="button" className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-red-700 dark:bg-red-700 dark:focus:ring-blue-800 max-h-12 shrink">
+                    -
+                    <span className="sr-only">Remove localization</span>
+                  </button>
+                  <div className='grow'>
                     <label htmlFor={Localization[entry[0]]} className="block mb-2 text-sm font-medium text-gray-900 text-white">Variable</label>
                     <select disabled id={Localization[entry[0]]} value={entry[0]} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                       {Object.values(Localization).filter((v): v is number => typeof v === 'number').map((variable) =>
@@ -203,7 +231,7 @@ function App() {
                       }
                     </select>
                   </div>
-                  <div>
+                  <div className='grow'>
                     <label htmlFor={Localization[entry[0]] + '_value'} className="block mb-2 text-sm font-medium text-gray-900 text-white">Value</label>
                     <div className="relative flex items-center max-w-[8rem]">
                       <button onClick={() => updateLocalizationValue(entry[0], (entry[1] - 1).toString())} type="button" id="decrement-button" data-input-counter-decrement={Localization[entry[0]] + '_value'} className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
@@ -247,10 +275,14 @@ function App() {
               </select>
             </div> : ''}
 
-            <div className="flex flex-col w-full max-w-64 m-auto">
+            <div className="flex flex-col w-full m-auto">
               {Array.from(determinant.entries()).map((entry) => (
-                <div key={entry[0]} className='grid gap-6 grid-cols-2'>
-                  <div>
+                <div key={entry[0]} className='flex gap-6 items-end'>
+                  <button onClick={() => removeDeterminant(entry[0])} type="button" className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-red-700 dark:bg-red-700 dark:focus:ring-blue-800 max-h-12 shrink">
+                    -
+                    <span className="sr-only">Remove determinant</span>
+                  </button>
+                  <div className='grow'>
                     <label htmlFor={Determinant[entry[0]]} className="block mb-2 text-sm font-medium text-gray-900 text-white">Variable</label>
                     <select disabled id={Determinant[entry[0]]} value={entry[0]} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                       {Object.values(Determinant).filter((v): v is number => typeof v === 'number').map((variable) =>
@@ -258,7 +290,7 @@ function App() {
                       }
                     </select>
                   </div>
-                  <div>
+                  <div className='grow'>
                     <label htmlFor={Determinant[entry[0]] + '_value'} className="block mb-2 text-sm font-medium text-gray-900 text-white">Value</label>
                     <div className="relative flex items-center max-w-[8rem]">
                       <button onClick={() => updateDeterminantValue(entry[0], (entry[1] - 1).toString())} type="button" id="decrement-button" data-input-counter-decrement={Determinant[entry[0]] + '_value'} className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
@@ -301,10 +333,14 @@ function App() {
               </select>
             </div> : ''}
 
-            <div className="flex flex-col w-full max-w-64 m-auto">
+            <div className="flex flex-col w-full m-auto">
               {Array.from(content.entries()).map((entry) => (
-                <div key={entry[0]} className='grid gap-6 grid-cols-2'>
-                  <div>
+                <div key={entry[0]} className='flex gap-6 items-end'>
+                  <button onClick={() => removeContent(entry[0])} type="button" className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-red-700 dark:bg-red-700 dark:focus:ring-blue-800 max-h-12 shrink">
+                    -
+                    <span className="sr-only">Remove content</span>
+                  </button>
+                  <div className='grow'>
                     <label htmlFor={Content[entry[0]]} className="block mb-2 text-sm font-medium text-gray-900 text-white">Variable</label>
                     <select disabled id={Content[entry[0]]} value={entry[0]} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                       {Object.values(Content).filter((v): v is number => typeof v === 'number').map((variable) =>
@@ -312,7 +348,7 @@ function App() {
                       }
                     </select>
                   </div>
-                  <div>
+                  <div className='grow'>
                     <label htmlFor={Content[entry[0]] + '_value'} className="block mb-2 text-sm font-medium text-gray-900 text-white">Value</label>
                     <div className="relative flex items-center max-w-[8rem]">
                       <button onClick={() => updateContentValue(entry[0], (entry[1] - 1).toString())} type="button" id="decrement-button" data-input-counter-decrement={Content[entry[0]] + '_value'} className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
@@ -355,10 +391,14 @@ function App() {
               </select>
             </div> : ''}
 
-            <div className="flex flex-col w-full max-w-64 m-auto">
+            <div className="flex flex-col w-full m-auto">
               {Array.from(frecuency.entries()).map((entry) => (
-                <div key={entry[0]} className='grid gap-6 grid-cols-2'>
-                  <div>
+                <div key={entry[0]} className='flex gap-6 items-end'>
+                  <button onClick={() => removeFrecuency(entry[0])} type="button" className="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-red-700 dark:bg-red-700 dark:focus:ring-blue-800 max-h-12 shrink">
+                    -
+                    <span className="sr-only">Remove frecuency</span>
+                  </button>
+                  <div className='grow'>
                     <label htmlFor={Frecuency[entry[0]]} className="block mb-2 text-sm font-medium text-gray-900 text-white">Variable</label>
                     <select disabled id={Frecuency[entry[0]]} value={entry[0]} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                       {Object.values(Frecuency).filter((v): v is number => typeof v === 'number').map((variable) =>
@@ -366,7 +406,7 @@ function App() {
                       }
                     </select>
                   </div>
-                  <div>
+                  <div className='grow'>
                     <label htmlFor={Frecuency[entry[0]] + '_value'} className="block mb-2 text-sm font-medium text-gray-900 text-white">Value</label>
                     <div className="relative flex items-center max-w-[8rem]">
                       <button onClick={() => updateFrecuencyValue(entry[0], (entry[1] - 1).toString())} type="button" id="decrement-button" data-input-counter-decrement={Frecuency[entry[0]] + '_value'} className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
