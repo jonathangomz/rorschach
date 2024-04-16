@@ -178,8 +178,8 @@ function App() {
 
             {addingNewLocalization ? <div id='add_localization_div'>
               <label htmlFor='new_localization' className="block mb-2 text-sm font-medium text-gray-900 text-white">Variable</label>
-              <select id='new_localization' onChange={(e) => addNewLocalization(e.target.value)} defaultValue={undefined} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option disabled selected>Selecciona una Localización</option>
+              <select id='new_localization' onChange={(e) => addNewLocalization(e.target.value)} defaultValue={-1} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option disabled value={-1}>Selecciona una Localización</option>
                 {Object.values(Localization).filter((v): v is number => typeof v === 'number').map((variable) => {
                   if(!localization.has(variable)) {
                     return (
@@ -233,8 +233,8 @@ function App() {
 
             {addingNewDeterminant ? <div>
               <label htmlFor='new_determinant' className="block mb-2 text-sm font-medium text-gray-900 text-white">Variable</label>
-              <select id='new_determinant' onChange={(e) => addNewDeterminant(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option disabled selected>Selecciona una Determinante</option>
+              <select id='new_determinant' onChange={(e) => addNewDeterminant(e.target.value)} defaultValue={-1} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option disabled value={-1}>Selecciona una Determinante</option>
                 {Object.values(Determinant).filter((v): v is number => typeof v === 'number').map((variable) => {
                   if(!determinant.has(variable)) {
                     return (
@@ -287,8 +287,8 @@ function App() {
 
             {addingNewContent ? <div>
               <label htmlFor='new_content' className="block mb-2 text-sm font-medium text-gray-900 text-white">Variable</label>
-              <select id='new_content' onChange={(e) => addNewContent(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option disabled selected>Selecciona un Contenido</option>
+              <select id='new_content' onChange={(e) => addNewContent(e.target.value)} defaultValue={-1} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option disabled value={-1}>Selecciona un Contenido</option>
                 {Object.values(Content).filter((v): v is number => typeof v === 'number').map((variable) => {
                   if(!content.has(variable)) {
                     return (
@@ -341,8 +341,8 @@ function App() {
 
             {addingNewFrecuency ? <div>
               <label htmlFor='new_frecuency' className="block mb-2 text-sm font-medium text-gray-900 text-white">Variable</label>
-              <select id='new_frecuency' onChange={(e) => addNewFrecuency(e.target.value)} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option disabled selected>Selecciona un Contenido</option>
+              <select id='new_frecuency' onChange={(e) => addNewFrecuency(e.target.value)} defaultValue={-1} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <option disabled value={-1}>Selecciona un Contenido</option>
                 {Object.values(Frecuency).filter((v): v is number => typeof v === 'number').map((variable) => {
                   if(!frecuency.has(variable)) {
                     return (
