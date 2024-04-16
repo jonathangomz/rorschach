@@ -221,4 +221,122 @@ export class Answers {
 
     return `${W} ${D} ${Dd}`;
   }
+
+  get W_M(): string {
+    const varW = this.localization.get(Localization.W) ?? 0;
+    const varMpos = this.determinant.get(Determinant['M+']) ?? 0;
+    const varMneg = this.determinant.get(Determinant['M-']) ?? 0;
+    const varM = varMpos + varMneg;
+
+    let result = '';
+    if(varW < 6 || varM < 3) {
+      result = 'No aplica';
+    } else if(varW > varM && varM > Math.floor(varW / 3)) {
+      result = 'W:M'
+    } else if(Math.floor(varW / 3) >= varM) {
+      result = 'W>M'
+    } else if(varW <= varM) {
+      result = 'W<M'
+    } else {
+      result = 'ta raro';
+    }
+
+    return result;
+  }
+
+  get M_ΣC(): {result: string, formula: string} {
+    // Suma M
+    const variablesM = [Determinant['M+'], Determinant['M-'], Determinant['FM+'], Determinant['FM-'], Determinant['Ms+'], Determinant['Ms-']];
+    const answers = Array.from(this.determinant.entries()).filter(variable => variablesM.includes(variable[0]));
+    const totalM = answers.reduce((prev, current) => prev + current[1], 0);
+    const formulaM = `Σ(${variablesM.map((varM) => Determinant[varM]).join(', ')})`;
+
+    // Suma C
+    const varFC_pos_id = Determinant['FC+'];
+    const varFC_neg_id = Determinant['FC-'];
+    const varCF_id = Determinant.CF;
+    const varC_id = Determinant.C;
+
+    const varFC_pos = this.determinant.get(varFC_pos_id) ?? 0;
+    const varFC_neg = this.determinant.get(varFC_neg_id) ?? 0;
+    const varCF = this.determinant.get(varCF_id) ?? 0;
+    const varC = this.determinant.get(varC_id) ?? 0;
+
+    const totalC = ((varFC_pos + varFC_neg) * 0.5) + varCF + (varC * 1.5);
+    const formulaC = `(FC * 0.5) + CF + (C * 1.5)`;
+
+    return {
+      result: `${totalM}:${totalC}`,
+      formula: `M = ${formulaM}; C = ${formulaC}`
+    }
+  }
+
+  get FC_CF_C(): {result: string, formula: string} {
+    const varFC_pos_id = Determinant['FC+'];
+    const varFC_neg_id = Determinant['FC-'];
+    const varCF_id = Determinant.CF;
+    const varC_id = Determinant.C;
+
+    const varFC_pos = this.determinant.get(varFC_pos_id) ?? 0;
+    const varFC_neg = this.determinant.get(varFC_neg_id) ?? 0;
+    const varCF = this.determinant.get(varCF_id) ?? 0;
+    const varC = this.determinant.get(varC_id) ?? 0;
+
+    const left = ((varFC_pos + varFC_neg) * 0.5) > (varCF + (varC * 1.5));
+    const leftFormula = `(FC * 0.5) > CF + (C * 1.5)`;
+    
+    const central = (varCF > (((varFC_pos + varFC_neg) * 0.5) + (varC * 1.5)));
+    const centralFormula = `CF > ((FC * 0.5) + (C * 1.5))`;
+
+    const right = ((varC * 1.5) > (((varFC_pos + varFC_neg) * 0.5) + varCF));
+    const rightFormula = `(C * 1.5) > ((FC * 0.5) + CF)`;
+
+    let result = '';
+    if(left) {
+      result = 'Izquierda';
+    } else if(central) {
+      result = 'Central';
+    } else if (right) {
+      result = 'Derecha';
+    } else {
+      result = 'ta raro';
+    }
+
+    return {
+      result: `${result}`,
+      formula: `${leftFormula}; ${centralFormula}; ${rightFormula}`
+    }
+  }
+
+  get RelationH(): {result: string, formula: string} {
+    const varH = this.content.get(Content.H) ?? 0;
+    const varHd = this.content.get(Content.Hd) ?? 0;
+    const varHpar = this.content.get(Content['(H)']) ?? 0;
+    const varHdpar = this.content.get(Content['(Hd)']) ?? 0;
+
+    const resultH_Hd = `${varH}:${varHd}`;
+    const resultH_Hpar = `${varH}:${varHpar}`;
+    const resultHHd_HHdpar = `${(varH + varHd)}:${(varHpar + varHdpar)}`;
+
+    return {
+      result: `${resultH_Hd};${resultH_Hpar};${resultHHd_HHdpar}`,
+      formula: 'H:Hd; H:(H); (H+Hd):((H)+(Hd))'
+    }
+  }
+
+  get RelationA(): {result: string, formula: string} {
+    const varA = this.content.get(Content.A) ?? 0;
+    const varAd = this.content.get(Content.Ad) ?? 0;
+    const varApar = this.content.get(Content['(A)']) ?? 0;
+    const varAdpar = this.content.get(Content['(Ad)']) ?? 0;
+
+    const resultA_Ad = `${varA}:${varAd}`;
+    const resultA_Apar = `${varA}:${varApar}`;
+    const resultAAd_AAdpar = `${(varA + varAd)}:${(varApar + varAdpar)}`;
+
+    return {
+      result: `${resultA_Ad};${resultA_Apar};${resultAAd_AAdpar}`,
+      formula: 'A:Ad; A:(A); (A+Ad):((A)+(Ad))'
+    }
+  }
 }

@@ -98,6 +98,66 @@ export function Results({ answers } : { answers: Answers }) {
                 {answers.O}
               </td>
             </tr>
+            <tr className="bg-white dark:bg-gray-800">
+              <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              App
+              </th>
+              <td className="px-6 py-4">
+                {answers.App}
+              </td>
+            </tr>
+            <tr className="bg-white dark:bg-gray-800">
+              <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              W:M
+              </th>
+              <td className="px-6 py-4">
+                {answers.W_M}
+              </td>
+            </tr>
+            <tr className="bg-white dark:bg-gray-800">
+              <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              M:ΣC
+              </th>
+              <td className="px-6 py-4">
+                {answers.M_ΣC.result}
+              </td>
+              <td className="px-6 py-4">
+                {answers.M_ΣC.formula}
+              </td>
+            </tr>
+            <tr className="bg-white dark:bg-gray-800">
+              <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              FC:CF:C
+              </th>
+              <td className="px-6 py-4">
+                {answers.FC_CF_C.result}
+              </td>
+              <td className="px-6 py-4">
+                {answers.FC_CF_C.formula}
+              </td>
+            </tr>
+            <tr className="bg-white dark:bg-gray-800">
+              <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              Relación H
+              </th>
+              <td className="px-6 py-4">
+                {answers.RelationH.result}
+              </td>
+              <td className="px-6 py-4">
+                {answers.RelationH.formula}
+              </td>
+            </tr>
+            <tr className="bg-white dark:bg-gray-800">
+              <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+              Relación A
+              </th>
+              <td className="px-6 py-4">
+                {answers.RelationA.result}
+              </td>
+              <td className="px-6 py-4">
+                {answers.RelationA.formula}
+              </td>
+            </tr>
           </tbody>
         </table>
       </div>
