@@ -196,7 +196,7 @@ function App() {
       </div>
 
       <div className='grid gap-6 grid-cols-1 md:grid-cols-2 justify-items-center mb-6'>
-        <Card title="Localization">
+        <Card title="Localización">
           <>
             <button onClick={() => setAddingNewLocalization(!addingNewLocalization)} id='add_localization' type="button" className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Agregar nueva variable</button>
 
@@ -232,7 +232,7 @@ function App() {
                     </select>
                   </div>
                   <div className='grow'>
-                    <label htmlFor={Localization[entry[0]] + '_value'} className="block mb-2 text-sm font-medium text-gray-900 text-white">Value</label>
+                    <label htmlFor={Localization[entry[0]] + '_value'} className="block mb-2 text-sm font-medium text-gray-900 text-white">Cantidad</label>
                     <div className="relative flex items-center max-w-[8rem]">
                       <button onClick={() => updateLocalizationValue(entry[0], (entry[1] - 1).toString())} type="button" id="decrement-button" data-input-counter-decrement={Localization[entry[0]] + '_value'} className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                         <svg className="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
@@ -251,11 +251,23 @@ function App() {
               }
             </div>
 
-            <p>Suma: {Array.from(localization.values()).reduce((prev, current) => prev + current, 0)}</p>
+            <p className='inline'>Suma: {Array.from(localization.values()).reduce((prev, current) => prev + current, 0)}</p>
+            {numAnswers && (numAnswers - Array.from(localization.values()).reduce((prev, current) => prev + current, 0)) > 0 ? (
+              <>
+              <span> - </span>
+              <p className='inline'>Faltan: {(numAnswers - Array.from(localization.values()).reduce((prev, current) => prev + current, 0))} </p>
+              </>
+            ) : ''}
+            {numAnswers && (numAnswers - Array.from(localization.values()).reduce((prev, current) => prev + current, 0)) < 0 ? (
+              <>
+              <span> - </span>
+              <p className='inline'>Sobran: {(Array.from(localization.values()).reduce((prev, current) => prev + current, 0) - numAnswers)} </p>
+              </>
+            ) : ''}
           </>
         </Card>
 
-        <Card title="Determinant">
+        <Card title="Determinante">
           <>
             <button onClick={() => setAddingNewDeterminant(!addingNewDeterminant)} type="button" className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Agregar nueva variable</button>
 
@@ -291,7 +303,7 @@ function App() {
                     </select>
                   </div>
                   <div className='grow'>
-                    <label htmlFor={Determinant[entry[0]] + '_value'} className="block mb-2 text-sm font-medium text-gray-900 text-white">Value</label>
+                    <label htmlFor={Determinant[entry[0]] + '_value'} className="block mb-2 text-sm font-medium text-gray-900 text-white">Cantidad</label>
                     <div className="relative flex items-center max-w-[8rem]">
                       <button onClick={() => updateDeterminantValue(entry[0], (entry[1] - 1).toString())} type="button" id="decrement-button" data-input-counter-decrement={Determinant[entry[0]] + '_value'} className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                         <svg className="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
@@ -309,11 +321,24 @@ function App() {
                 </div>))
               }
             </div>
-            <p>Suma: {Array.from(determinant.values()).reduce((prev, current) => prev + current, 0)}</p>
+
+            <p className='inline'>Suma: {Array.from(determinant.values()).reduce((prev, current) => prev + current, 0)}</p>
+            {numAnswers && (numAnswers - Array.from(determinant.values()).reduce((prev, current) => prev + current, 0)) > 0 ? (
+              <>
+              <span> - </span>
+              <p className='inline'>Faltan: {(numAnswers - Array.from(determinant.values()).reduce((prev, current) => prev + current, 0))} </p>
+              </>
+            ) : ''}
+            {numAnswers && (numAnswers - Array.from(determinant.values()).reduce((prev, current) => prev + current, 0)) < 0 ? (
+              <>
+              <span> - </span>
+              <p className='inline'>Sobran: {(Array.from(determinant.values()).reduce((prev, current) => prev + current, 0) - numAnswers)} </p>
+              </>
+            ) : ''}
           </>
         </Card>
 
-        <Card title="Content">
+        <Card title="Contenido">
           <>
             <button onClick={() => setAddingNewContent(!addingNewContent)} type="button" className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Agregar nueva variable</button>
 
@@ -349,7 +374,7 @@ function App() {
                     </select>
                   </div>
                   <div className='grow'>
-                    <label htmlFor={Content[entry[0]] + '_value'} className="block mb-2 text-sm font-medium text-gray-900 text-white">Value</label>
+                    <label htmlFor={Content[entry[0]] + '_value'} className="block mb-2 text-sm font-medium text-gray-900 text-white">Cantidad</label>
                     <div className="relative flex items-center max-w-[8rem]">
                       <button onClick={() => updateContentValue(entry[0], (entry[1] - 1).toString())} type="button" id="decrement-button" data-input-counter-decrement={Content[entry[0]] + '_value'} className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                         <svg className="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
@@ -367,11 +392,24 @@ function App() {
                 </div>))
               }
             </div>
-            <p>Suma: {Array.from(content.values()).reduce((prev, current) => prev + current, 0)}</p>
+
+            <p className='inline'>Suma: {Array.from(content.values()).reduce((prev, current) => prev + current, 0)}</p>
+            {numAnswers && (numAnswers - Array.from(content.values()).reduce((prev, current) => prev + current, 0)) > 0 ? (
+              <>
+              <span> - </span>
+              <p className='inline'>Faltan: {(numAnswers - Array.from(content.values()).reduce((prev, current) => prev + current, 0))} </p>
+              </>
+            ) : ''}
+            {numAnswers && (numAnswers - Array.from(content.values()).reduce((prev, current) => prev + current, 0)) < 0 ? (
+              <>
+              <span> - </span>
+              <p className='inline'>Sobran: {(Array.from(content.values()).reduce((prev, current) => prev + current, 0) - numAnswers)} </p>
+              </>
+            ) : ''}
           </>
         </Card>
 
-        <Card title="Frecuency">
+        <Card title="Frecuencia">
           <>
             <button onClick={() => setAddingNewFrecuency(!addingNewFrecuency)} type="button" className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Agregar nueva variable</button>
 
@@ -407,7 +445,7 @@ function App() {
                     </select>
                   </div>
                   <div className='grow'>
-                    <label htmlFor={Frecuency[entry[0]] + '_value'} className="block mb-2 text-sm font-medium text-gray-900 text-white">Value</label>
+                    <label htmlFor={Frecuency[entry[0]] + '_value'} className="block mb-2 text-sm font-medium text-gray-900 text-white">Cantidad</label>
                     <div className="relative flex items-center max-w-[8rem]">
                       <button onClick={() => updateFrecuencyValue(entry[0], (entry[1] - 1).toString())} type="button" id="decrement-button" data-input-counter-decrement={Frecuency[entry[0]] + '_value'} className="bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 border border-gray-300 rounded-s-lg p-3 h-11 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                         <svg className="w-3 h-3 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
@@ -425,14 +463,27 @@ function App() {
                 </div>))
               }
             </div>
-            <p>Suma: {Array.from(frecuency.values()).reduce((prev, current) => prev + current, 0)}</p>
+
+            <p className='inline'>Suma: {Array.from(frecuency.values()).reduce((prev, current) => prev + current, 0)}</p>
+            {numAnswers && (numAnswers - Array.from(frecuency.values()).reduce((prev, current) => prev + current, 0)) > 0 ? (
+              <>
+              <span> - </span>
+              <p className='inline'>Faltan: {(numAnswers - Array.from(frecuency.values()).reduce((prev, current) => prev + current, 0))} </p>
+              </>
+            ) : ''}
+            {numAnswers && (numAnswers - Array.from(frecuency.values()).reduce((prev, current) => prev + current, 0)) < 0 ? (
+              <>
+              <span> - </span>
+              <p className='inline'>Sobran: {(Array.from(frecuency.values()).reduce((prev, current) => prev + current, 0) - numAnswers)} </p>
+              </>
+            ) : ''}
           </>
         </Card>
       </div>
       
       <div>
         <button onClick={getTableVariables} type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">{seeVariablesTable ? 'Esconder' : 'Ver'} variables</button>
-        <button onClick={calculate} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Calculate</button>
+        <button onClick={calculate} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Calcular</button>
       </div>
 
       {(seeVariablesTable) ? <VariablesTableResult
