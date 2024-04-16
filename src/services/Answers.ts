@@ -62,7 +62,7 @@ export class Answers {
 
     total = (total / this.numAnswers) * 100;
 
-    return total;
+    return this.round(total);
   }
 
   get D(): number {
@@ -74,7 +74,7 @@ export class Answers {
 
     total = (total / this.numAnswers) * 100;
 
-    return total;
+    return this.round(total);
   }
 
   get Dd(): number {
@@ -86,7 +86,7 @@ export class Answers {
 
     total = (total / this.numAnswers) * 100;
 
-    return total;
+    return this.round(total);
   }
 
   get F(): number {
@@ -98,7 +98,7 @@ export class Answers {
 
     total = (total / this.numAnswers) * 100;
 
-    return total;
+    return this.round(total);
   }
 
   get FAmplio(): number {
@@ -110,7 +110,7 @@ export class Answers {
 
     total = (total / this.numAnswers) * 100;
 
-    return total;
+    return this.round(total);
   }
 
   get FposSimple(): number {
@@ -120,7 +120,7 @@ export class Answers {
 
     const total = (Fpos + (F/2)) / (Fpos + F + Fneg);
 
-    return total * 100;
+    return this.round(total * 100);
   }
 
   get FposAmplio(): number {
@@ -136,7 +136,7 @@ export class Answers {
 
     const totalFx = answersFx.reduce((prev, current) => prev + current[1], 0);
 
-    return (totalFxpos / totalFx) * 100;
+    return this.round((totalFxpos / totalFx) * 100);
   }
 
   get H(): number {
@@ -146,7 +146,7 @@ export class Answers {
 
     const total = answers.reduce((prev, current) => prev + current[1], 0);
 
-    return (total / this.numAnswers) * 100;
+    return this.round((total / this.numAnswers) * 100);
   }
 
   get A(): number {
@@ -156,7 +156,7 @@ export class Answers {
 
     const total = answers.reduce((prev, current) => prev + current[1], 0);
 
-    return (total / this.numAnswers) * 100;
+    return this.round((total / this.numAnswers) * 100);
   }
 
   get P(): number {
@@ -166,7 +166,7 @@ export class Answers {
 
     const total = answers.reduce((prev, current) => prev + current[1], 0);
 
-    return (total / this.numAnswers) * 100;
+    return this.round((total / this.numAnswers) * 100);
   }
 
   get O(): number {
@@ -176,7 +176,7 @@ export class Answers {
 
     const total = answers.reduce((prev, current) => prev + current[1], 0);
 
-    return (total / this.numAnswers) * 100;
+    return this.round((total / this.numAnswers) * 100);
   }
 
   get App(): string {
@@ -338,5 +338,9 @@ export class Answers {
       result: `${resultA_Ad};${resultA_Apar};${resultAAd_AAdpar}`,
       formula: 'A:Ad; A:(A); (A+Ad):((A)+(Ad))'
     }
+  }
+
+  private round(number: number) {
+    return Math.round((number + Number.EPSILON) * 100) / 100;
   }
 }

@@ -28,7 +28,7 @@ export function Results({ answers } : { answers: Answers }) {
                 W%
               </th>
               <td className="px-6 py-4">
-                {answers.W}
+                {answers.W}%
               </td>
               <td className="px-6 py-4">
                 todavía no la agrego
@@ -39,7 +39,7 @@ export function Results({ answers } : { answers: Answers }) {
                 D%
               </th>
               <td className="px-6 py-4">
-                {answers.D}
+                {answers.D}%
               </td>
               <td className="px-6 py-4">
               todavía no la agrego
@@ -50,7 +50,7 @@ export function Results({ answers } : { answers: Answers }) {
                 Dd%
               </th>
               <td className="px-6 py-4">
-                {answers.Dd}
+                {answers.Dd}%
               </td>
               <td className="px-6 py-4">
               todavía no la agrego
@@ -61,7 +61,7 @@ export function Results({ answers } : { answers: Answers }) {
                 F%
               </th>
               <td className="px-6 py-4">
-                {answers.F}
+                {answers.F}%
               </td>
               <td className="px-6 py-4">
               todavía no la agrego
@@ -72,7 +72,7 @@ export function Results({ answers } : { answers: Answers }) {
               F% amplio
               </th>
               <td className="px-6 py-4">
-                {answers.FAmplio}
+                {answers.FAmplio}%
               </td>
               <td className="px-6 py-4">
               todavía no la agrego
@@ -83,7 +83,7 @@ export function Results({ answers } : { answers: Answers }) {
               F +% simple
               </th>
               <td className="px-6 py-4">
-                {answers.FposSimple}
+                {answers.FposSimple}%
               </td>
               <td className="px-6 py-4">
               todavía no la agrego
@@ -94,7 +94,7 @@ export function Results({ answers } : { answers: Answers }) {
               F +% amplio
               </th>
               <td className="px-6 py-4">
-                {answers.FposAmplio}
+                {answers.FposAmplio}%
               </td>
               <td className="px-6 py-4">
               todavía no la agrego
@@ -105,7 +105,7 @@ export function Results({ answers } : { answers: Answers }) {
               H%
               </th>
               <td className="px-6 py-4">
-                {answers.H}
+                {answers.H}%
               </td>
               <td className="px-6 py-4">
               todavía no la agrego
@@ -116,7 +116,7 @@ export function Results({ answers } : { answers: Answers }) {
               A%
               </th>
               <td className="px-6 py-4">
-                {answers.A}
+                {answers.A}%
               </td>
               <td className="px-6 py-4">
               todavía no la agrego
@@ -127,7 +127,7 @@ export function Results({ answers } : { answers: Answers }) {
               P%
               </th>
               <td className="px-6 py-4">
-                {answers.P}
+                {answers.P}%
               </td>
               <td className="px-6 py-4">
               todavía no la agrego
@@ -138,7 +138,7 @@ export function Results({ answers } : { answers: Answers }) {
               O%
               </th>
               <td className="px-6 py-4">
-                {answers.O}
+                {answers.O}%
               </td>
               <td className="px-6 py-4">
               todavía no la agrego
