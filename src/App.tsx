@@ -4,6 +4,7 @@ import { Card } from './components/Card'
 import { Content, Determinant, Frecuency, Localization } from './services/rorschach.types'
 import { Answers } from './services/Answers';
 import { Results } from './components/Results';
+import { VariablesTableResult } from './components/VariablesTableResult';
 
 function App() {
   const [addingNewLocalization, setAddingNewLocalization] = useState(false);
@@ -18,6 +19,8 @@ function App() {
   const [content, setContent] = useState(new Map<Content, number>());
   const [frecuency, setFrecuency] = useState(new Map<Frecuency, number>());
 
+  const [seeResults, setSeeResults] = useState(false);
+  const [seeVariablesTable, setSeeVariablesTable] = useState(false);
   const [answers, setAnswers] = useState<Answers | undefined>(undefined);
 
   function updateNumAnswers(value: string) {
@@ -129,6 +132,8 @@ function App() {
       if(answers.validateNumSections()) {
         if(answers.validateNumAnswers()) {
           setAnswers(answers);
+          setSeeResults(true);
+          setSeeVariablesTable(false);
         } else {
           alert('Numero de respuestas no coincide con las sumas de las secciones.');
         }
@@ -136,6 +141,11 @@ function App() {
         alert('Algunos valores de las secciones están mal. Checa las sumas.');
       }
     }
+  }
+  
+  function getTableVariables() {
+    setSeeResults(false);
+    setSeeVariablesTable(!seeVariablesTable);
   }
 
   return (
@@ -364,9 +374,18 @@ function App() {
         </Card>
       </div>
       
-      <button onClick={calculate} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Calculate</button>
+      <div>
+        <button onClick={getTableVariables} type="button" className="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">{seeVariablesTable ? 'Esconder' : 'Ver'} variables</button>
+        <button onClick={calculate} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Calculate</button>
+      </div>
 
-      {answers ? <Results answers={answers} /> : ''}
+      {(seeVariablesTable) ? <VariablesTableResult
+        localization={localization}
+        determinant={determinant}
+        content={content}
+        frecuency={frecuency} /> : ''
+      }
+      {(seeResults && answers) ? <Results answers={answers} /> : ''}
 
     </>
   )
