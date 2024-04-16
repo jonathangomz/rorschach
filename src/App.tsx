@@ -195,7 +195,7 @@ function App() {
         <input onChange={(e) => updateNumAnswers(e.target.value)} value={numAnswers} type="text" id="large-input" className="block m-auto p-4 text-gray-900 border border-gray-300 rounded-lg bg-gray-50 text-base focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 min-w-24" placeholder='23'/>
       </div>
 
-      <div className='grid gap-6 grid-cols-1 md:grid-cols-2 justify-items-center'>
+      <div className='grid gap-6 grid-cols-1 md:grid-cols-2 justify-items-center mb-6'>
         <Card title="Localization">
           <>
             <button onClick={() => setAddingNewLocalization(!addingNewLocalization)} id='add_localization' type="button" className="text-gray-900 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Agregar nueva variable</button>
