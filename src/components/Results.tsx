@@ -160,10 +160,10 @@ export function Results({ answers } : { answers: Answers }) {
               W:M
               </th>
               <td className="px-6 py-4">
-                {answers.W_M}
+                {answers.W_M.result}
               </td>
               <td className="px-6 py-4">
-              todavía no la agrego
+                {answers.W_M.formula}
               </td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">

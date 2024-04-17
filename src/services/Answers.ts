@@ -231,7 +231,7 @@ export class Answers {
     return `${W} ${D} ${Dd}`;
   }
 
-  get W_M(): string {
+  get W_M(): { result: string, formula: string} {
     const varW = this.localization.get(Localization.W) ?? 0;
     const varMpos = this.determinant.get(Determinant['M+']) ?? 0;
     const varMneg = this.determinant.get(Determinant['M-']) ?? 0;
@@ -250,7 +250,9 @@ export class Answers {
       result = 'ta raro';
     }
 
-    return result;
+    const formula = 'W:M = 1:2; W>M = 1:3; W<M = 1:1';
+
+    return { result, formula };
   }
 
   get M_ΣC(): {result: string, formula: string} {
