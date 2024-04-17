@@ -136,7 +136,7 @@ export class Answers {
     const answersFx = Array.from(this.determinant.entries()).filter(variable => variablesFx.includes(variable[0]));
 
     let totalFxpos = answersFxpos.reduce((prev, current) => prev + current[1], 0);
-    
+
     if(this.determinant.get(Determinant.F)) {
       totalFxpos = ((this.determinant.get(Determinant.F) ?? 0) / 2) + totalFxpos;
 
@@ -308,7 +308,7 @@ export class Answers {
     } else if (right) {
       result = 'Derecha';
     } else {
-      result = 'ta raro';
+      result = 'No aplica';
     }
 
     return {
