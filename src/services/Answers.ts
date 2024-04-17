@@ -118,9 +118,13 @@ export class Answers {
     const F = this.determinant.get(Determinant.F) ?? 0
     const Fneg = this.determinant.get(Determinant['F-']) ?? 0
 
-    const total = (Fpos + (F/2)) / (Fpos + F + Fneg);
+    if(Fpos && F && Fneg) {
+      const total = (Fpos + (F/2)) / (Fpos + F + Fneg);
 
-    return this.round(total * 100);
+      return this.round(total * 100);
+    } else {
+      return 0;
+    }
   }
 
   get FposAmplio(): number {
@@ -132,11 +136,16 @@ export class Answers {
     const answersFx = Array.from(this.determinant.entries()).filter(variable => variablesFx.includes(variable[0]));
 
     let totalFxpos = answersFxpos.reduce((prev, current) => prev + current[1], 0);
-    totalFxpos = ((this.determinant.get(Determinant.F) ?? 0) / 2) + totalFxpos
+    
+    if(this.determinant.get(Determinant.F)) {
+      totalFxpos = ((this.determinant.get(Determinant.F) ?? 0) / 2) + totalFxpos;
 
-    const totalFx = answersFx.reduce((prev, current) => prev + current[1], 0);
+      const totalFx = answersFx.reduce((prev, current) => prev + current[1], 0);
 
-    return this.round((totalFxpos / totalFx) * 100);
+      return this.round((totalFxpos / totalFx) * 100);
+    } else {
+      return 0;
+    }
   }
 
   get H(): number {
