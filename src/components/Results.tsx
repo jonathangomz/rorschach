@@ -105,10 +105,10 @@ export function Results({ answers } : { answers: Answers }) {
               H%
               </th>
               <td className="px-6 py-4">
-                {answers.H}%
+                {answers.H.result}%
               </td>
               <td className="px-6 py-4">
-              todavía no la agrego
+              {answers.H.formula}
               </td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -116,10 +116,10 @@ export function Results({ answers } : { answers: Answers }) {
               A%
               </th>
               <td className="px-6 py-4">
-                {answers.A}%
+                {answers.A.result}%
               </td>
               <td className="px-6 py-4">
-              todavía no la agrego
+              {answers.A.formula}
               </td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -127,10 +127,10 @@ export function Results({ answers } : { answers: Answers }) {
               P%
               </th>
               <td className="px-6 py-4">
-                {answers.P}%
+                {answers.P.result}%
               </td>
               <td className="px-6 py-4">
-              todavía no la agrego
+              {answers.P.formula}
               </td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -138,10 +138,10 @@ export function Results({ answers } : { answers: Answers }) {
               O%
               </th>
               <td className="px-6 py-4">
-                {answers.O}%
+                {answers.O.result}%
               </td>
               <td className="px-6 py-4">
-              todavía no la agrego
+              {answers.O.formula}
               </td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -149,10 +149,10 @@ export function Results({ answers } : { answers: Answers }) {
               App
               </th>
               <td className="px-6 py-4">
-                {answers.App}
+                {answers.App.result}
               </td>
               <td className="px-6 py-4">
-              todavía no la agrego
+              {answers.App.formula}
               </td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">

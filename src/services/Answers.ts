@@ -170,47 +170,67 @@ export class Answers {
     }
   }
 
-  get H(): number {
+  get H(): {result: number, formula: string} {
     const variables = [Content.H, Content.Hd, Content['(H)'], Content['(Hd)']];
     
     const answers = Array.from(this.content.entries()).filter(variable => variables.includes(variable[0]));
 
-    const total = answers.reduce((prev, current) => prev + current[1], 0);
+    let total = answers.reduce((prev, current) => prev + current[1], 0);
 
-    return this.round((total / this.numAnswers) * 100);
+    total = this.round((total / this.numAnswers) * 100);
+    
+    return {
+      result: total,
+      formula: '([H + Hd + (H) + (Hd)] * 100) / R'
+    }
   }
 
-  get A(): number {
+  get A(): {result: number, formula: string} {
     const variables = [Content.A, Content.Ad, Content['(A)'], Content['(Ad)']];
     
     const answers = Array.from(this.content.entries()).filter(variable => variables.includes(variable[0]));
 
-    const total = answers.reduce((prev, current) => prev + current[1], 0);
+    let total = answers.reduce((prev, current) => prev + current[1], 0);
 
-    return this.round((total / this.numAnswers) * 100);
+    total = this.round((total / this.numAnswers) * 100);
+
+    return {
+      result: total,
+      formula: '([A + Ad + (A) + (Ad)] * 100) / R'
+    }
   }
 
-  get P(): number {
+  get P(): {result: number, formula: string} {
     const variables = [Frecuency.P, Frecuency['(P)']];
     
     const answers = Array.from(this.frecuency.entries()).filter(variable => variables.includes(variable[0]));
 
-    const total = answers.reduce((prev, current) => prev + current[1], 0);
+    let total = answers.reduce((prev, current) => prev + current[1], 0);
 
-    return this.round((total / this.numAnswers) * 100);
+    total = this.round((total / this.numAnswers) * 100);
+
+    return {
+      result: total,
+      formula: '([P + (P)] * 100) / R'
+    }
   }
 
-  get O(): number {
+  get O(): {result: number, formula: string} {
     const variables = [Frecuency['O+'], Frecuency['O-'], Frecuency.O];
     
     const answers = Array.from(this.frecuency.entries()).filter(variable => variables.includes(variable[0]));
 
-    const total = answers.reduce((prev, current) => prev + current[1], 0);
+    let total = answers.reduce((prev, current) => prev + current[1], 0);
 
-    return this.round((total / this.numAnswers) * 100);
+    total = this.round((total / this.numAnswers) * 100);
+
+    return {
+      result: total,
+      formula: '(((O+) + (O-)) * 100) / R'
+    }
   }
 
-  get App(): string {
+  get App(): { result: string, formula: string} {
     const W_MAX = 30;
     const W_MIN = 20;
     let W = 'W';
@@ -250,7 +270,10 @@ export class Answers {
       Dd = '!'.repeat(symbolAmount) + Dd + '!'.repeat(symbolAmount);
     }
 
-    return `${W} ${D} ${Dd}`;
+    return {
+      result: `${W} ${D} ${Dd}`,
+      formula: 'W- D- Dd'
+    }
   }
 
   get W_M(): { result: string, formula: string} {
