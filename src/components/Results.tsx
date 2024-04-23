@@ -28,10 +28,10 @@ export function Results({ answers } : { answers: Answers }) {
                 W%
               </th>
               <td className="px-6 py-4">
-                {answers.W}%
+                {answers.W.result}%
               </td>
               <td className="px-6 py-4">
-                todavía no la agrego
+                {answers.W.formula}
               </td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -39,10 +39,10 @@ export function Results({ answers } : { answers: Answers }) {
                 D%
               </th>
               <td className="px-6 py-4">
-                {answers.D}%
+                {answers.D.result}%
               </td>
               <td className="px-6 py-4">
-              todavía no la agrego
+              {answers.D.formula}
               </td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -50,10 +50,10 @@ export function Results({ answers } : { answers: Answers }) {
                 Dd%
               </th>
               <td className="px-6 py-4">
-                {answers.Dd}%
+                {answers.Dd.result}%
               </td>
               <td className="px-6 py-4">
-              todavía no la agrego
+              {answers.Dd.formula}
               </td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -61,10 +61,10 @@ export function Results({ answers } : { answers: Answers }) {
                 F%
               </th>
               <td className="px-6 py-4">
-                {answers.F}%
+                {answers.F.result}%
               </td>
               <td className="px-6 py-4">
-              todavía no la agrego
+              {answers.F.formula}
               </td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -72,10 +72,10 @@ export function Results({ answers } : { answers: Answers }) {
               F% amplio
               </th>
               <td className="px-6 py-4">
-                {answers.FAmplio}%
+                {answers.FAmplio.result}%
               </td>
               <td className="px-6 py-4">
-              todavía no la agrego
+              {answers.FAmplio.formula}
               </td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -83,10 +83,10 @@ export function Results({ answers } : { answers: Answers }) {
               F +% simple
               </th>
               <td className="px-6 py-4">
-                {answers.FposSimple}%
+                {answers.FposSimple.result}%
               </td>
               <td className="px-6 py-4">
-              todavía no la agrego
+              {answers.FposSimple.formula}
               </td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
@@ -94,10 +94,10 @@ export function Results({ answers } : { answers: Answers }) {
               F +% amplio
               </th>
               <td className="px-6 py-4">
-                {answers.FposAmplio}%
+                {answers.FposAmplio.result}%
               </td>
               <td className="px-6 py-4">
-              todavía no la agrego
+              {answers.FposAmplio.formula}
               </td>
             </tr>
             <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
