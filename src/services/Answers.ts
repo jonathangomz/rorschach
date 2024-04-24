@@ -250,7 +250,6 @@ export class Answers {
     if(this.D.result < D_MIN) {
       const diff = D_MIN - this.D.result;
       const symbolAmount = Math.round(diff / 10);
-      console.log(symbolAmount, diff)
       D = '('.repeat(symbolAmount) + D  + ')'.repeat(symbolAmount);
     } else if(this.D.result > D_MAX) {
       const diff = this.D.result - D_MAX;
