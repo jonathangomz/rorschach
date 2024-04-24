@@ -236,12 +236,12 @@ export class Answers {
     let W = 'W';
     if(this.W.result < W_MIN) {
       const diff = W_MIN - this.W.result;
-      const symbolAmount = Math.floor(diff / 5);
+      const symbolAmount = Math.round(diff / 10);
       W = '('.repeat(symbolAmount) + W + ')'.repeat(symbolAmount);
     } else if(this.W.result > W_MAX) {
       const diff = this.W.result - W_MAX;
-      const symbolAmount = Math.floor(diff / 5);
-      W = '!'.repeat(symbolAmount) + W + '!'.repeat(symbolAmount);
+      const symbolAmount = Math.round(diff / 10);
+      W = W + '!'.repeat(symbolAmount);
     }
 
     const D_MAX = 70;
@@ -249,12 +249,13 @@ export class Answers {
     let D = 'D';
     if(this.D.result < D_MIN) {
       const diff = D_MIN - this.D.result;
-      const symbolAmount = Math.floor(diff / 5);
+      const symbolAmount = Math.round(diff / 10);
+      console.log(symbolAmount, diff)
       D = '('.repeat(symbolAmount) + D  + ')'.repeat(symbolAmount);
     } else if(this.D.result > D_MAX) {
       const diff = this.D.result - D_MAX;
-      const symbolAmount = Math.floor(diff / 5);
-      D = '!'.repeat(symbolAmount) + D + '!'.repeat(symbolAmount);
+      const symbolAmount = Math.round(diff / 10);
+      D = D + '!'.repeat(symbolAmount);
     }
 
     const Dd_MAX = 12;
@@ -262,12 +263,12 @@ export class Answers {
     let Dd  = 'Dd';
     if(this.Dd.result < Dd_MIN) {
       const diff = Dd_MIN - this.Dd.result;
-      const symbolAmount = Math.floor(diff / 5);
+      const symbolAmount = Math.round(diff / 10);
       Dd = '('.repeat(symbolAmount) + Dd  + ')'.repeat(symbolAmount);
     } else if(this.Dd.result > Dd_MAX) {
       const diff = this.Dd.result - Dd_MAX;
-      const symbolAmount = Math.floor(diff / 5);
-      Dd = '!'.repeat(symbolAmount) + Dd + '!'.repeat(symbolAmount);
+      const symbolAmount = Math.round(diff / 10);
+      Dd = Dd + '!'.repeat(symbolAmount);
     }
 
     return {
