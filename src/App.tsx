@@ -465,18 +465,6 @@ function App() {
             </div>
 
             <p className='inline'>Suma: {Array.from(frecuency.values()).reduce((prev, current) => prev + current, 0)}</p>
-            {numAnswers && (numAnswers - Array.from(frecuency.values()).reduce((prev, current) => prev + current, 0)) > 0 ? (
-              <>
-              <span> - </span>
-              <p className='inline'>Faltan: {(numAnswers - Array.from(frecuency.values()).reduce((prev, current) => prev + current, 0))} </p>
-              </>
-            ) : ''}
-            {numAnswers && (numAnswers - Array.from(frecuency.values()).reduce((prev, current) => prev + current, 0)) < 0 ? (
-              <>
-              <span> - </span>
-              <p className='inline'>Sobran: {(Array.from(frecuency.values()).reduce((prev, current) => prev + current, 0) - numAnswers)} </p>
-              </>
-            ) : ''}
           </>
         </Card>
       </div>

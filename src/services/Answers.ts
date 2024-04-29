@@ -39,9 +39,8 @@ export class Answers {
     const localizationTotal = Array.from(this.localization.values()).reduce((prev, current) => prev + current, 0);
     const determinantTotal = Array.from(this.determinant.values()).reduce((prev, current) => prev + current, 0);
     const contentTotal = Array.from(this.content.values()).reduce((prev, current) => prev + current, 0);
-    const frecuencyTotal = Array.from(this.frecuency.values()).reduce((prev, current) => prev + current, 0);
 
-    return (localizationTotal === determinantTotal && determinantTotal === contentTotal && contentTotal === frecuencyTotal)
+    return (localizationTotal === determinantTotal && determinantTotal === contentTotal)
   }
 
   validateNumAnswers() {
